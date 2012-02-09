@@ -3,13 +3,13 @@
 /*
 htmlSQL - version 0.5
 --------------------------------------------------------------------
-htmlSQL is a experimental class to query websites or HTML code with 
+htmlSQL is a experimental library to query websites or HTML code with 
 an SQL-like language.
 
 AUTHOR: Jonas John (http://www.jonasjohn.de/)
 
 The latest version of htmlSQL can be obtained from:
-http://www.jonasjohn.de/lab/htmlsql.htm
+https://github.com/hxseven/htmlSQL
 
 LICENSE:
 --------------------------------------------------------------------
@@ -45,14 +45,12 @@ USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 CHANGELOG:
 
 0.4 -> 0.5 (May 07, 2006):
-- Renamed the project from webSQL to htmlSQL, because webSQL
-  is already existing... :-(
-- Added some error checks and error messages 
-- Added the convert_tagname_to_key function and
-  fixed a few issues
+- Renamed the project from webSQL to htmlSQL because webSQL already exists
+- Added more error checks
+- Added the convert_tagname_to_key function and fixed a few issues
 
 0.1 -> 0.4 (April 2006):
-- Created main parts of the class
+- Created main parts of the library
     
 */
 
@@ -146,18 +144,25 @@ class htmlsql {
     ** connects to a data source (url, file or string)
     */
     
-    function connect($type, $resource){        
+    function connect($type, $resource){    
+    
         if ($type == 'url'){ 
             return $this->_fetch_url($resource);
         }
         else if ($type == 'file') { 
+        
             if (!file_exists($resource)){ 
                 $this->error = 'The given file "'.$resource.' does not exist!';
                 return false;
             }
-            $this->page = file_get_contents($resource); return true;
+            
+            $this->page = file_get_contents($resource); 
+            return true;
         }
-        else if ($type == 'string') { $this->page = $resource; return true; }
+        else if ($type == 'string') { 
+            $this->page = $resource; 
+            return true;
+        }
         
         return false;
     }
@@ -201,7 +206,8 @@ class htmlsql {
         else {
             $this->error = 'Could not establish a connection to the given URL!';
             return false;
-        }            
+        }
+        
         return true;        
     }
     
@@ -214,10 +220,11 @@ class htmlsql {
     
     function _extract_all_tags($html, &$tag_names, &$tag_attributes, &$tag_values, $depth=0){
         
-        // stop endless loops:
-        if ($depth > 99999){ return; }
+        // stop endless loops -> ugly...
+        if ($depth > 99999) return;
         
         preg_match_all('/<([a-z0-9\-]+)(.*?)>((.*?)<\/\1>)?/is', $html, $m);
+
         if (count($m[0]) != 0){
             for ($t=0; $t < count($m[0]); $t++){
             
@@ -332,8 +339,7 @@ class htmlsql {
             return false;
         }
         
-        return $r;
-    
+        return $r;    
     }
     
     
@@ -433,9 +439,7 @@ class htmlsql {
             $search_term = $last;
         }
         
-        /*
-        ** find tags:
-        */
+        // find tags
 
         if ($search_term == '*'){
             // search all
@@ -448,8 +452,7 @@ class htmlsql {
             
             $this->_extract_all_tags($html, $tag_names, $tag_attributes, $tag_values);
             
-            $this->_match_tags($results, $return_values, $where_term, $tag_attributes, $tag_values, $tag_names);
-            
+            $this->_match_tags($results, $return_values, $where_term, $tag_attributes, $tag_values, $tag_names);            
         }
         else {
         
@@ -474,12 +477,7 @@ class htmlsql {
         $this->results = $results;
         
         // was there a error during the search process?
-        if ($this->error != ''){
-            return false;
-        }
-                    
-        return true;
-    
+        return ($this->error == '');
     }
     
     /*
@@ -491,6 +489,7 @@ class htmlsql {
     function convert_tagname_to_key(){
             
         $new_array = array();
+        $tag_name = '';
     
         while(list($key,$val) = each($this->results)){
             
@@ -559,13 +558,10 @@ class htmlsql {
                 $results[$key] = $this->_array2object($val);
             }
         
-            $this->results_objects = $results;
-            
-            return $this->results_objects;
+            $this->results_objects = $results;            
         }
-        else {
-            return $this->results_objects;
-        }
+
+        return $this->results_objects;
     }
     
     /*
