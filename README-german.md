@@ -1,85 +1,91 @@
-htmlSQL - Version 0.5 - README
----------------------------------------------------------------------
-AUTHOR: Jonas John (http://www.jonasjohn.de/)
+ï»¿htmlSQL - Version 0.5
+=====================
 
-BESCHREIBUNG:
----------------------------------------------------------------------
 htmlSQL ist eine experimentelle PHP Klasse mit der man auf HTML
-Elemente über eine SQL ähnliche Syntax zugreifen kann. Das
-bedeutet das man nicht mehr über komplizierte Funktionen
+Elemente Ã¼ber eine SQL Ã¤hnliche Syntax zugreifen kann. Das
+bedeutet das man nicht mehr Ã¼ber komplizierte Funktionen
 bestimmte Tags extrahieren muss, sondern einfach eine Query
-wie diese ausführt:
+wie diese ausfÃ¼hrt:
 
-SELECT href,title   FROM  a   WHERE $class == "liste"
-       ^ HTML Attrib.     ^         ^ Abfrage (kann auch leer sein)
-         die zurück-      ^
-         gegeben          ^ HTML Tags die durchsucht werden sollen 
-         werden sollen      "*" ist hier möglich = alle Tags
-                              
+    SELECT href,title   FROM  a   WHERE $class == "liste"
+           ^ HTML Attrib.     ^         ^ Abfrage (kann auch leer sein)
+             die zurÃ¼ck-      ^
+             gegeben          ^ HTML Tags die durchsucht werden sollen
+             werden sollen      "*" ist hier mÃ¶glich = alle Tags
+
 Diese Abfrage gibt einen Array aller Links mit dem Attribut class="liste"
-zurück.
+zurÃ¼ck.
 
-Alle HTTP Verbindungen in htmlSQL benützen die wunderbare Snoopy Klasse
-(Package Version 1.2.3 - URL: http://snoopy.sourceforge.net/). 
-Allerdings wird Snoopy nicht für "file" oder "string" Queries benötigt.
+Alle HTTP Verbindungen in htmlSQL benÃ¼tzen die wunderbare Snoopy Klasse
+(Package Version 1.2.3 - URL: http://sourceforge.net/projects/snoopy/).
+Allerdings wird Snoopy nicht fÃ¼r "file" oder "string" Queries benÃ¶tigt.
 Alle Snoopy betreffenden Dokumente (z.B: Copyright-Infos, Readme, usw.)
 befinden sich im "snoopy_data/" Unterordner.
 
 
-INSTALLATION / ANWENDUNG:
----------------------------------------------------------------------
-Um htmlSQL in eigenen Projekten zu benützen ist es nur notwendig die
+Installation / Anwendung
+------------------------
+
+Um htmlSQL in eigenen Projekten zu benÃ¼tzen ist es nur notwendig die
 zwei Dateien "snoopy.class.php" und die "htmlsql.class.php" zu laden
-(mit include oder z.B. require). Danach kann htmlSQL, wie in den 
+(mit include oder z.B. require). Danach kann htmlSQL, wie in den
 Beispielen (siehe examples/-Ordner), angesprochen werden. Dies sollte
 nicht allzu schwer sein :-)
 
 
-HINTERGRUND / GESCHICHTE:
----------------------------------------------------------------------
+Hintergrund / Geschichte
+------------------------
+
 Ich hatte die Idee zu dieser Klasse als ich Daten von einer Web-Seite
 extrahiert habe und dabei merkte das sich die Funktionen und Quelltexte
 oftmals wiederholen. Da kam mir die Idee das ganze zu vereinfachen und
-eine universelle Klasse dafür zu entwickeln. 
+eine universelle Klasse dafÃ¼r zu entwickeln.
 
 
-WARNUNG:
----------------------------------------------------------------------
-Für die Abfragen wird die eval()-Funktion benützt. Deshalb sollten alle
-vom Besucher abhängige Daten wie z.b. IDs geprüft oder ggf. gefiltert 
-werden da es ansonsten möglich wäre schadhaften PHP Quelltext auszuführen.
+Warnung
+-------
+
+FÃ¼r die Abfragen wird die eval()-Funktion benÃ¼tzt. Deshalb sollten alle
+vom Besucher abhÃ¤ngige Daten wie z.b. IDs geprÃ¼ft oder ggf. gefiltert
+werden da es ansonsten mÃ¶glich wÃ¤re schadhaften PHP Quelltext auszufÃ¼hren.
 Vertraue niemals Benutzereingaben!
 
 
-TODO:
----------------------------------------------------------------------
-- den internen HTML Parser verbessern
-- ein eigenes Query system entwickeln und nicht
-  das PHP eigene nutzen ( Die eval()-Lösung gefällt mir nicht wirklich)
-- Mehr Fehlerprüfungen
+Todo
+----
+
+- Den internen HTML Parser verbessern
+- Ein eigenes Query system entwickeln und nicht
+  das PHP eigene nutzen ( Die eval()-LÃ¶sung gefÃ¤llt mir nicht wirklich)
+- Mehr FehlerprÃ¼fungen
 - LIMIT Funktion einbauen
 
 
-ANWENDUNGSGEBIETE VON HTMLSQL:
----------------------------------------------------------------------
+Anwendungsgebiete von htmlSQL
+-----------------------------
+
 - Daten von anderen Web-Seiten auslesen
 - HTML basierte Datenbanken?
 - XML Daten auslesen
 
 
-LIZENZ:
----------------------------------------------------------------------
-htmlSQL benützt eine modifizierte BSD Lizenz, welche ziemlich offen ist.
-Der Lizenztext befindet sich in der "htmlsql.class.php". 
-Kurz zusammengefasst besagt er folgendes: 
+Author
+------
 
-- Die htmlSQL Klasse kann frei in kommerziellen und nicht-kommerziellen 
-  Projekten benützt werden
-- Die Klasse darf mit oder ohne Änderungen frei weitergegeben werden
+- [Jonas John](http://www.jonasjohn.de/)
+
+
+Lizenz
+------
+
+htmlSQL benÃ¼tzt eine modifizierte BSD Lizenz, welche ziemlich offen ist.
+Der Lizenztext befindet sich in der "htmlsql.class.php".
+Kurz zusammengefasst besagt er folgendes:
+
+- Die htmlSQL Klasse kann frei in kommerziellen und nicht-kommerziellen Projekten benÃ¼tzt werden
+- Die Klasse darf mit oder ohne Ã„nderungen frei weitergegeben werden
 - Der Copyright-Hinweis darf nicht entfernt werden
-- Der Autor übernimmt keine Haftung für eventuelle Schäden
+- Der Autor Ã¼bernimmt keine Haftung fÃ¼r eventuelle SchÃ¤den
 - Der Name des Autors oder anderen beteiligten Autoren darf nur mit
-  schriftlicher Genehmigung benützt werden um für Produkte, welche 
-  htmlSQL benützen, zu werben
-
-
+  schriftlicher Genehmigung benÃ¼tzt werden um fÃ¼r Produkte, welche
+  htmlSQL benÃ¼tzen, zu werben
