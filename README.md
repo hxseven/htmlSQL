@@ -1,9 +1,8 @@
 htmlSQL - Version 0.5
 =====================
 
-htmlSQL is a experimental PHP library which allows you to access HTML
-values by an SQL like syntax. This means that you don't have to write
-complex functions or regular expressions to extract specific values.
+htmlSQL is an experimental PHP library that allows you to access HTML values by an SQL like syntax. 
+This means that you don't have to write complex functions or regular expressions to extract specific values.
 
 **htmlSQL queries look like this:**
 
@@ -16,12 +15,10 @@ complex functions or regular expressions to extract specific values.
 This query should return an array with all links that contain the attribute `class="list"`.
 
 
-The project has been abandoned
-------------------------------
+Project Discontinued
+--------------------
 
-htmlSQL was a experiment I made in 2006. I'm **not** supporting or extending the library anymore, this repository is only for historical purposes.
-But feel free to fork, modify and study the source code. If you need a reliable library for data scraping I recommend using **other modules**.
-
+HtmlSQL was an experiment I did in 2006. I'm not supporting or extending the library anymore this repository is only for historical purposes. But feel free to fork, modify and study the source code. If you need a reliable library for data scraping I recommend using other modules.
 
 Related projects:
 
@@ -60,7 +57,7 @@ Background / idea
 
 I had this idea while extracting some data from a website. As I realized
 that the algorithms and functions to extract links and other tags are
-often the same - I had the idea to combine all functions to an universal
+often the same - I had the idea to combine all functions into a universal
 usable library. While drinking a coffee and thinking about that, I
 thought it would be cool to access HTML elements by using SQL. So I
 started creating this library...
